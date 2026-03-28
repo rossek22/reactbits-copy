@@ -1,36 +1,263 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ReactBits Copy (Next.js + Bun)
 
-## Getting Started
+## 🇷🇺 Описание
 
-First, run the development server:
+Это проект — клон ReactBits, созданный на **Next.js + Bun** с немного изменённым дизайном и улучшенными UI/UX элементами (анимации, glass-эффекты, адаптивный navbar и т.д.).
+
+Проект сделан для практики:
+
+* современного фронтенда
+* архитектуры Next.js (App Router)
+* анимаций (Framer Motion)
+* построения красивого UI
+
+---
+
+## ⚙️ Технологии
+
+* Next.js (App Router)
+* Bun
+* TypeScript
+* TailwindCSS
+* Framer Motion
+
+---
+
+## 📁 Структура проекта
+
+```
+.
+├── app/                # страницы и layout (App Router)
+│   ├── layout.tsx      # общий layout
+│   ├── page.tsx        # главная страница
+│   ├── globals.css     # глобальные стили
+│   └── favicon.ico
+│
+├── components/         # UI компоненты
+│   ├── Navbar.tsx
+│   ├── HeroSection.tsx
+│   └── MagicRings.tsx
+│
+├── lib/                # утилиты
+│   └── utils.ts
+│
+├── public/             # статические файлы
+│
+├── config файлы:
+│   ├── next.config.ts
+│   ├── tsconfig.json
+│   ├── postcss.config.mjs
+│   ├── eslint.config.mjs
+│   └── components.json
+│
+├── bun.lock
+├── package.json
+└── README.md
+```
+
+---
+
+## 🚀 Установка и запуск
+
+### 1. Установить Bun
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+curl -fsSL https://bun.sh/install | bash
+```
+
+---
+
+### 2. Клонировать проект
+
+```bash
+git clone https://github.com/your-username/reactbits-copy.git
+cd reactbits-copy
+```
+
+---
+
+### 3. Установить зависимости
+
+```bash
+bun install
+```
+
+---
+
+### 4. Запустить dev сервер
+
+```bash
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Открыть:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+### 5. Сборка
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+bun run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 6. Продакшн запуск
 
-## Deploy on Vercel
+```bash
+bun start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ✨ Фичи
+
+* Адаптивный navbar (с бургер-меню)
+* Анимации появления (stagger + blur)
+* Glass UI элементы
+* Чистая структура проекта
+* Использование App Router
+* Soon..
+
+---
+
+## ⚠️ Важно
+
+Проект является неофициальным клоном и создан исключительно в образовательных целях.
+
+---
+
+---
+
+# 🇺🇸 Description
+
+This project is a ReactBits Copy built with **Next.js + Bun**, featuring a slightly modified design and enhanced UI/UX (animations, glass effects, responsive navbar, etc.).
+
+It is built for:
+
+* learning modern frontend development
+* working with Next.js App Router
+* practicing animations (Framer Motion)
+* building clean UI systems
+
+---
+
+## ⚙️ Tech Stack
+
+* Next.js (App Router)
+* Bun
+* TypeScript
+* TailwindCSS
+* Framer Motion
+
+---
+
+## 📁 Project Structure
+
+```
+.
+├── app/                # pages & layout (App Router)
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── globals.css
+│   └── favicon.ico
+│
+├── components/         # UI components
+│   ├── Navbar.tsx
+│   ├── HeroSection.tsx
+│   └── MagicRings.tsx
+│
+├── lib/                # utilities
+│   └── utils.ts
+│
+├── public/             # static assets
+│
+├── config files:
+│   ├── next.config.ts
+│   ├── tsconfig.json
+│   ├── postcss.config.mjs
+│   ├── eslint.config.mjs
+│   └── components.json
+│
+├── bun.lock
+├── package.json
+└── README.md
+```
+
+---
+
+## 🚀 Installation & Run
+
+### 1. Install Bun
+
+```bash
+curl -fsSL https://bun.sh/install | bash
+```
+
+---
+
+### 2. Clone repository
+
+```bash
+git clone https://github.com/your-username/reactbits-copy.git
+cd reactbits-copy
+```
+
+---
+
+### 3. Install dependencies
+
+```bash
+bun install
+```
+
+---
+
+### 4. Run development server
+
+```bash
+bun dev
+```
+
+Open:
+
+```
+http://localhost:3000
+```
+
+---
+
+### 5. Build project
+
+```bash
+bun run build
+```
+
+---
+
+### 6. Start production
+
+```bash
+bun start
+```
+
+---
+
+## ✨ Features
+
+* Responsive navbar with burger menu
+* Stagger + blur animations
+* Glass UI components
+* Clean architecture
+* Next.js App Router usage
+* Soon..
+
+---
+
+## ⚠️ Disclaimer
+
+This project is for educational purposes only and is not affiliated with the original ReactBits.
