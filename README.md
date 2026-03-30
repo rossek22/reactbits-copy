@@ -6,20 +6,20 @@
 
 Проект сделан для практики:
 
-* современного фронтенда
-* архитектуры Next.js (App Router)
-* анимаций (Framer Motion)
-* построения красивого UI
+- современного фронтенда
+- архитектуры Next.js (App Router)
+- анимаций (Framer Motion)
+- построения красивого UI
 
 ---
 
 ## ⚙️ Технологии
 
-* Next.js (App Router)
-* Bun
-* TypeScript
-* TailwindCSS
-* Framer Motion
+- Next.js (App Router)
+- Bun
+- TypeScript
+- TailwindCSS
+- Framer Motion
 
 ---
 
@@ -27,24 +27,36 @@
 
 ```
 .
-├── app/                # страницы и layout (App Router)
-│   ├── layout.tsx      # общий layout
-│   ├── page.tsx        # главная страница
-│   ├── globals.css     # глобальные стили
+├── app/                     # App Router (страницы и layout)
+│   ├── layout.tsx           # общий layout
+│   ├── page.tsx             # главная страница
+│   ├── globals.css          # глобальные стили
 │   └── favicon.ico
 │
-├── components/         # UI компоненты
-│   ├── Navbar.tsx
-│   ├── HeroSection.tsx
-│   └── MagicRings.tsx
+├── components/              # UI компоненты
+│   ├── other/               # мелкие/переиспользуемые компоненты
+│   │   ├── GradientText.tsx
+│   │   ├── MagicRings.tsx
+│   │   └── ThemeToggle.tsx
+│   │
+│   ├── sections/            # секции страницы
+│   │   └── HeroSection.tsx
+│   │
+│   ├── Button.tsx
+│   ├── Modal.tsx
+│   └── Navbar.tsx
 │
-├── lib/                # утилиты
+├── lib/                     # утилиты и хелперы
 │   └── utils.ts
 │
-├── public/             # статические файлы
+├── public/                  # статические файлы
 │
-├── config файлы:
+├── .next/                   # билд Next.js (игнорируется)
+├── node_modules/            # зависимости
+│
+├── конфиги:
 │   ├── next.config.ts
+│   ├── next-env.d.ts
 │   ├── tsconfig.json
 │   ├── postcss.config.mjs
 │   ├── eslint.config.mjs
@@ -52,7 +64,9 @@
 │
 ├── bun.lock
 ├── package.json
-└── README.md
+├── README.md
+├── AGENTS.md
+└── CLAUDE.md
 ```
 
 ---
@@ -116,12 +130,12 @@ bun start
 
 ## ✨ Фичи
 
-* Адаптивный navbar (с бургер-меню)
-* Анимации появления (stagger + blur)
-* Glass UI элементы
-* Чистая структура проекта
-* Использование App Router
-* Soon..
+- Адаптивный navbar (с бургер-меню)
+- Анимации появления (stagger + blur)
+- Glass UI элементы
+- Чистая структура проекта
+- Использование App Router
+- Soon..
 
 ---
 
@@ -139,20 +153,20 @@ This project is a ReactBits Copy built with **Next.js + Bun**, featuring a sligh
 
 It is built for:
 
-* learning modern frontend development
-* working with Next.js App Router
-* practicing animations (Framer Motion)
-* building clean UI systems
+- learning modern frontend development
+- working with Next.js App Router
+- practicing animations (Framer Motion)
+- building clean UI systems
 
 ---
 
 ## ⚙️ Tech Stack
 
-* Next.js (App Router)
-* Bun
-* TypeScript
-* TailwindCSS
-* Framer Motion
+- Next.js (App Router)
+- Bun
+- TypeScript
+- TailwindCSS
+- Framer Motion
 
 ---
 
@@ -160,24 +174,36 @@ It is built for:
 
 ```
 .
-├── app/                # pages & layout (App Router)
-│   ├── layout.tsx
-│   ├── page.tsx
-│   ├── globals.css
+├── app/                     # App Router (pages and layout)
+│   ├── layout.tsx           # root layout
+│   ├── page.tsx             # main page
+│   ├── globals.css          # global styles
 │   └── favicon.ico
 │
-├── components/         # UI components
-│   ├── Navbar.tsx
-│   ├── HeroSection.tsx
-│   └── MagicRings.tsx
+├── components/              # UI components
+│   ├── other/               # small/reusable components
+│   │   ├── GradientText.tsx
+│   │   ├── MagicRings.tsx
+│   │   └── ThemeToggle.tsx
+│   │
+│   ├── sections/            # page sections
+│   │   └── HeroSection.tsx
+│   │
+│   ├── Button.tsx
+│   ├── Modal.tsx
+│   └── Navbar.tsx
 │
-├── lib/                # utilities
+├── lib/                     # utilities and helpers
 │   └── utils.ts
 │
-├── public/             # static assets
+├── public/                  # static assets
+│
+├── .next/                   # Next.js build output (ignored)
+├── node_modules/            # dependencies
 │
 ├── config files:
 │   ├── next.config.ts
+│   ├── next-env.d.ts
 │   ├── tsconfig.json
 │   ├── postcss.config.mjs
 │   ├── eslint.config.mjs
@@ -185,7 +211,10 @@ It is built for:
 │
 ├── bun.lock
 ├── package.json
-└── README.md
+├── README.md
+├── AGENTS.md
+└── CLAUDE.md
+
 ```
 
 ---
@@ -249,12 +278,12 @@ bun start
 
 ## ✨ Features
 
-* Responsive navbar with burger menu
-* Stagger + blur animations
-* Glass UI components
-* Clean architecture
-* Next.js App Router usage
-* Soon..
+- Responsive navbar with burger menu
+- Stagger + blur animations
+- Glass UI components
+- Clean architecture
+- Next.js App Router usage
+- Soon..
 
 ---
 
