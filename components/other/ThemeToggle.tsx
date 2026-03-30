@@ -1,50 +1,97 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Moon, Sun } from "lucide-react";
+import { Monitor, Moon, Sun } from "lucide-react";
 import Button from "../Button";
 
-type Theme = "light" | "dark";
+type ThemeMode = "light" | "dark" | "system";
+type ResolvedTheme = "light" | "dark";
 
 const STORAGE_KEY = "theme";
+const COOKIE_KEY = "theme";
 
-function applyTheme(theme: Theme) {
-  if (theme === "dark") {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
-
-  document.documentElement.style.colorScheme = theme;
-}
-
-function getPreferredTheme(): Theme {
-  if (typeof window === "undefined") {
-    return "dark";
-  }
-
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored === "light" || stored === "dark") {
-    return stored;
-  }
-
+function getSystemTheme(): ResolvedTheme {
   return window.matchMedia("(prefers-color-scheme: dark)").matches
     ? "dark"
     : "light";
 }
 
+function resolveTheme(mode: ThemeMode): ResolvedTheme {
+  return mode === "system" ? getSystemTheme() : mode;
+}
+
+function syncTheme(mode: ThemeMode) {
+  const theme = resolveTheme(mode);
+  const root = document.documentElement;
+
+  root.dataset.themeMode = mode;
+  root.classList.toggle("dark", theme === "dark");
+  root.classList.toggle("light", theme === "light");
+  root.style.colorScheme = theme;
+}
+
+function persistTheme(mode: ThemeMode) {
+  localStorage.setItem(STORAGE_KEY, mode);
+  document.cookie = `${COOKIE_KEY}=${mode}; path=/; max-age=31536000; samesite=lax`;
+}
+
+function getPreferredTheme(): ThemeMode {
+  if (typeof window === "undefined") {
+    return "dark";
+  }
+
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (stored === "light" || stored === "dark" || stored === "system") {
+    return stored;
+  }
+
+  return "dark";
+}
+
+function getNextTheme(mode: ThemeMode): ThemeMode {
+  if (mode === "dark") {
+    return "light";
+  }
+
+  if (mode === "light") {
+    return "system";
+  }
+
+  return "dark";
+}
+
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>(getPreferredTheme);
+  const [themeMode, setThemeMode] = useState<ThemeMode>(getPreferredTheme);
 
   useEffect(() => {
-    applyTheme(theme);
-    localStorage.setItem(STORAGE_KEY, theme);
-  }, [theme]);
+    syncTheme(themeMode);
+    persistTheme(themeMode);
+
+    if (themeMode !== "system") {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = () => syncTheme("system");
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, [themeMode]);
 
   const toggle = () => {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
+    setThemeMode((currentTheme) => getNextTheme(currentTheme));
   };
+
+  const resolvedTheme = themeMode === "system" ? getSystemTheme() : themeMode;
+  const icon =
+    themeMode === "system" ? (
+      <Monitor size={20} />
+    ) : resolvedTheme === "dark" ? (
+      <Sun size={20} />
+    ) : (
+      <Moon size={20} />
+    );
+  const nextTheme = getNextTheme(themeMode);
 
   return (
     <Button
@@ -52,9 +99,10 @@ export default function ThemeToggle() {
       variant="onlyIcon"
       radius="999px"
       backgroundOpacity={0}
-      icon={theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-      aria-pressed={theme === "dark"}
-      aria-label="Toggle theme"
+      icon={icon}
+      aria-pressed={resolvedTheme === "dark"}
+      aria-label={`Theme: ${themeMode}. Switch to ${nextTheme}.`}
+      title={`Theme: ${themeMode}`}
     />
   );
 }

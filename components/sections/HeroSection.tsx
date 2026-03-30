@@ -6,6 +6,8 @@ import GradientText from "../other/GradientText";
 import Link from "next/link";
 import Button from "../Button";
 import { ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { revealItem, revealStaggerContainer } from "@/lib/animations";
 
 const gridColumns = [
   "",
@@ -48,32 +50,51 @@ export default function HeroSection() {
         />
       </div>
 
-      <div className="relative z-10 flex w-full flex-row justify-center gap-3 px-3 -mt-12 pointer-events-none sm:gap-4 sm:px-4 md:gap-6 lg:gap-10">
+      <motion.div
+        variants={revealStaggerContainer}
+        initial="hidden"
+        animate="show"
+        className="relative z-10 flex w-full flex-row justify-center gap-3 px-3 -mt-12 pointer-events-none sm:gap-4 sm:px-4 md:gap-6 lg:gap-10"
+      >
         {gridColumns.map((visibilityClass, index) => (
-          <div
+          <motion.div
             key={index}
+            variants={revealItem}
             className={`h-screen w-[42vw] max-w-64 shrink-0 border-x border-black/5 backdrop-blur-[5px] transition-colors duration-500 sm:w-52 md:w-56 lg:w-64 dark:border-white/5 ${visibilityClass}`}
           />
         ))}
-      </div>
+      </motion.div>
 
       <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center px-4 pb-10 pt-28 text-center sm:px-6 sm:pt-32">
-        <div className="flex w-full max-w-5xl flex-col items-center justify-center gap-3 font-[Raleway] text-[2.75rem] font-semibold leading-[0.95] sm:gap-4 sm:text-6xl md:text-7xl lg:text-[5.5rem]">
-          <Link
-            className="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-border bg-[#0a0a0a]/50 px-3 py-1 text-left shadow-sm transition-all duration-300 backdrop-blur-sm hover:bg-[#0a0a0a]/80 animate-fade-in delay-150 cursor-pointer"
-            href="/#pricing"
-          >
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex size-2 rounded-full bg-emerald-500"></span>
-            </span>
-            <span className="text-xs text-white sm:text-sm">
-              Trusted by 620+ developers
-            </span>
-          </Link>
+        <motion.div
+          variants={revealStaggerContainer}
+          initial="hidden"
+          animate="show"
+          className="flex w-full max-w-5xl flex-col items-center justify-center gap-3 font-[Raleway] text-[2.75rem] font-semibold leading-[0.95] sm:gap-4 sm:text-6xl md:text-7xl lg:text-[5.5rem]"
+        >
+          <motion.div variants={revealItem}>
+            <Link
+              className="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-border bg-[#0a0a0a]/50 px-3 py-1 text-left shadow-sm transition-all duration-300 backdrop-blur-sm hover:bg-[#0a0a0a]/80 cursor-pointer"
+              href="/#pricing"
+            >
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex size-2 rounded-full bg-emerald-500"></span>
+              </span>
+              <span className="text-xs text-white sm:text-sm">
+                Trusted by 620+ developers
+              </span>
+            </Link>
+          </motion.div>
           <div className="flex w-screen flex-col items-center justify-center">
-            <div className="flex w-screen flex-col items-center justify-center gap-y-2 sm:gap-y-2.5">
-              <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 max-[380px]:text-[2.35rem]">
+            <motion.div
+              variants={revealStaggerContainer}
+              className="flex w-screen flex-col items-center justify-center gap-y-2 sm:gap-y-2.5"
+            >
+              <motion.div
+                variants={revealItem}
+                className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 max-[380px]:text-[2.35rem]"
+              >
                 <span>Build</span>
                 <GradientText
                   colors={[
@@ -89,14 +110,22 @@ export default function HeroSection() {
                   memorable
                 </GradientText>
                 <span>products</span>
-              </div>
-              <span className="block w-full">faster than ever</span>
-            </div>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              </motion.div>
+              <motion.span variants={revealItem} className="block w-full">
+                faster than ever
+              </motion.span>
+            </motion.div>
+            <motion.p
+              variants={revealItem}
+              className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg"
+            >
               React components, blocks, and templates designed for marketing
               pages, launches, and products that need to stand out.
-            </p>
-            <div className="pointer-events-auto mt-6 flex w-full flex-col items-stretch justify-center gap-3 text-base sm:w-auto sm:flex-row sm:items-center sm:gap-4">
+            </motion.p>
+            <motion.div
+              variants={revealItem}
+              className="pointer-events-auto mt-6 flex w-full flex-col items-stretch justify-center gap-3 text-base sm:w-auto sm:flex-row sm:items-center sm:gap-4"
+            >
               <Button
                 text="Get Lifetime Access"
                 variant="white"
@@ -112,9 +141,9 @@ export default function HeroSection() {
                 backgroundOpacity={0.5}
                 className="w-full font-semibold sm:w-auto"
               />
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
