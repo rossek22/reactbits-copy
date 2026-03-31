@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { cookies } from "next/headers";
 import { Raleway } from "next/font/google";
 import "./globals.css";
@@ -38,6 +38,9 @@ export const metadata: Metadata = {
     description:
       "Build memorable products faster with a polished ReactBits-style experience.",
   },
+};
+
+export const viewport: Viewport = {
   colorScheme: "dark light",
 };
 
@@ -75,7 +78,11 @@ export default async function RootLayout({
     <html
       lang="en"
       className={`${raleway.variable} h-full antialiased ${initialThemeClass}`.trim()}
-      data-theme-mode={themeMode === "light" || themeMode === "dark" || themeMode === "system" ? themeMode : "dark"}
+      data-theme-mode={
+        themeMode === "light" || themeMode === "dark" || themeMode === "system"
+          ? themeMode
+          : "dark"
+      }
       suppressHydrationWarning
     >
       <head>

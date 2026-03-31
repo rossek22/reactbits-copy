@@ -62,8 +62,10 @@ function getNextTheme(mode: ThemeMode): ThemeMode {
 
 export default function ThemeToggle() {
   const [themeMode, setThemeMode] = useState<ThemeMode>(getPreferredTheme);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     syncTheme(themeMode);
     persistTheme(themeMode);
 
@@ -92,6 +94,22 @@ export default function ThemeToggle() {
       <Moon size={20} />
     );
   const nextTheme = getNextTheme(themeMode);
+
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!mounted) {
+    return (
+      <Button
+        onClick={() => {}}
+        variant="onlyIcon"
+        radius="999px"
+        backgroundOpacity={0}
+        icon={<div style={{ width: 20, height: 20 }} />} // Placeholder
+        aria-pressed={false}
+        aria-label="Loading theme toggle"
+        title="Loading theme toggle"
+      />
+    );
+  }
 
   return (
     <Button
